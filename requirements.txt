@@ -1,0 +1,29 @@
+# --- Streamlit ---
+streamlit==1.39.0
+streamlit-chat==0.1.1
+
+# --- LangChain Ecosystem (aligned) ---
+langchain==0.3.7
+langchain-core==0.3.18
+langchain-community==0.3.7
+langchain-huggingface==0.1.0
+
+# --- Embeddings / NLP ---
+sentence-transformers==2.7.0
+torch==2.3.0
+transformers==4.44.2
+accelerate>=0.31.0
+
+# --- Vector DB ---
+faiss-cpu==1.8.0
+
+# --- Document Loaders / Parsing ---
+unstructured==0.15.0
+pypdf==4.3.1
+python-docx==1.1.2
+
+# --- Utilities ---
+tiktoken==0.7.0
+requests>=2.31.0
+numpy>=1.26.0
+watchdog>=4.0.0

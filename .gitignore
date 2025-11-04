@@ -1,0 +1,35 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+
+# --- Virtual environment ---
+venv/
+.env/
+.env*/
+
+# --- Streamlit cache & logs ---
+.cache/
+.streamlit/
+
+# --- OS / Editor files ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Build / distribution ---
+build/
+dist/
+*.spec
+
+# --- Project specific ---
+core/__pycache__/
+ui/__pycache__/
+cache/
+docs/
