@@ -64,6 +64,9 @@ python --version
 ### 📦 2. Clone the Repository
 
 ```bash
+git clone https://github.com/ranga-seeburger/aavanam-thedal-modular.git
+cd aavanam-thedal-modular
+
 git clone https://github.com/<your-repo>/aavanam-thedal.git
 cd aavanam-thedal
 ```
