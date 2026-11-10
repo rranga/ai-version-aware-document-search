@@ -1,0 +1,83 @@
+name: Deploy backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  image:
+    name: Publish image to GHCR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: meta
+        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}-api" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        with:
+          context: backend
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.image }}:latest
+            ${{ steps.meta.outputs.image }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  huggingface:
+    name: Sync to Hugging Face Space
+    runs-on: ubuntu-latest
+    # Runs only once the HF_TOKEN secret and HF_SPACE variable (e.g. "rranga/ai-version-aware-document-search") are configured.
+    if: vars.HF_SPACE != ''
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Assemble Space
+        run: |
+          mkdir space
+          cp -r backend/app backend/Dockerfile backend/docker-entrypoint.sh \
+                backend/requirements.txt backend/requirements-ml.txt backend/.dockerignore space/
+          cat > space/README.md <<'EOF'
+          ---
+          title: AI Version-Aware Doc Search API
+          emoji: 🔍
+          colorFrom: green
+          colorTo: blue
+          sdk: docker
+          app_port: 7860
+          pinned: false
+          ---
+
+          Backend for [AI Version-Aware Document Search](https://github.com/${{ github.repository }}): version-aware document
+          search with FAISS, sentence-transformers and a bundled Ollama model. API docs at `/docs`.
+          EOF
+      - name: Upload
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        run: |
+          pip install -q huggingface_hub
+          python - <<'EOF'
+          import os
+          from huggingface_hub import HfApi
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo = os.environ["HF_SPACE"]
+          api.create_repo(repo, repo_type="space", space_sdk="docker", exist_ok=True)
+          api.upload_folder(folder_path="space", repo_id=repo, repo_type="space",
+                            commit_message="Deploy ${{ github.sha }}", delete_patterns=["app/**"])
+          print(f"Deployed to https://huggingface.co/spaces/{repo}")
+          EOF

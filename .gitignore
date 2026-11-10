@@ -1,35 +1,24 @@
 # --- Python ---
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.so
-*.egg
 *.egg-info/
-.eggs/
-
-# --- Virtual environment ---
+.venv/
 venv/
-.env/
-.env*/
+.pytest_cache/
+.ruff_cache/
+.env
 
-# --- Streamlit cache & logs ---
-.cache/
-.streamlit/
+# --- Backend runtime data (SQLite DB + FAISS index) ---
+backend/data/
+data/
 
-# --- OS / Editor files ---
+# --- Frontend ---
+node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# --- OS / editors ---
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-
-# --- Build / distribution ---
-build/
-dist/
-*.spec
-
-# --- Project specific ---
-core/__pycache__/
-ui/__pycache__/
-cache/
-docs/

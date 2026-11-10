@@ -1,0 +1,4 @@
+# Real semantic embeddings (pulls in PyTorch). Install on top of requirements.txt.
+-r requirements.txt
+sentence-transformers==4.1.0
+langchain-huggingface==0.2.0

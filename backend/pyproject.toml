@@ -1,0 +1,17 @@
+[project]
+name = "ai-version-aware-document-search"
+version = "2.0.0"
+description = "Version-aware intelligent document search (FastAPI + FAISS + LangChain + Ollama)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["B008", "E501"]  # FastAPI call defaults; long lines are left to the formatter

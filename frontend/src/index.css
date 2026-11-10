@@ -1,0 +1,128 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #eff2f5;
+  --fg: #111827;
+  --muted: #5d6676;
+  --line: #e2e6ec;
+  --accent: #0f766e;
+  --accent-hover: #0d5f59;
+  --accent-fg: #ffffff;
+  --accent-soft: #e3f3f1;
+  --add: #e6f6eb;
+  --add-fg: #166534;
+  --add-line: #86d6a3;
+  --del: #fdeceb;
+  --del-fg: #9f1d1d;
+  --del-line: #f2a7a2;
+  --mod: #fff6e0;
+  --mod-fg: #8a5a00;
+  --mod-line: #f1cf7a;
+  --mark: #fde68a;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0b0f14;
+  --surface: #121821;
+  --surface-2: #19212c;
+  --fg: #e7ecf3;
+  --muted: #95a1b3;
+  --line: #253041;
+  --accent: #2cc4b2;
+  --accent-hover: #4fd6c6;
+  --accent-fg: #052421;
+  --accent-soft: #10302d;
+  --add: #0f2a1a;
+  --add-fg: #8ee5ad;
+  --add-line: #2c6b44;
+  --del: #2e1416;
+  --del-fg: #f8a9a4;
+  --del-line: #7a2d2d;
+  --mod: #2b230d;
+  --mod-fg: #f3cf75;
+  --mod-line: #6b5520;
+  --mark: #6b5a16;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-add: var(--add);
+  --color-add-fg: var(--add-fg);
+  --color-add-line: var(--add-line);
+  --color-del: var(--del);
+  --color-del-fg: var(--del-fg);
+  --color-del-line: var(--del-line);
+  --color-mod: var(--mod);
+  --color-mod-fg: var(--mod-fg);
+  --color-mod-line: var(--mod-line);
+  --color-mark: var(--mark);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  @apply font-sans antialiased;
+}
+
+mark {
+  background: var(--mark);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+.prose-answer p {
+  margin: 0.5rem 0;
+}
+.prose-answer ul,
+.prose-answer ol {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+.prose-answer ul {
+  list-style: disc;
+}
+.prose-answer ol {
+  list-style: decimal;
+}
+.prose-answer li {
+  margin: 0.2rem 0;
+}
+.prose-answer strong {
+  font-weight: 600;
+}
+.prose-answer code {
+  @apply rounded bg-surface-2 px-1 py-0.5 text-[0.9em];
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.caret::after {
+  content: '▍';
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+  color: var(--accent);
+}
