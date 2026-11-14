@@ -1,13 +1,13 @@
 # 🔍 AI Version-Aware Document Search
 
-[![CI](https://github.com/rranga/ai-version-aware-document-search/actions/workflows/ci.yml/badge.svg)](https://github.com/rranga/ai-version-aware-document-search/actions/workflows/ci.yml)
+[![CI](https://github.com/ranga-rekkamalla/ai-version-aware-document-search/actions/workflows/ci.yml/badge.svg)](https://github.com/ranga-rekkamalla/ai-version-aware-document-search/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Search, compare and ask questions across **every version** of your documents.
 
 Upload files or add links, and each new upload of the same document becomes a new version. Then ask a question against the latest version, one specific version, a range of versions, or all of them. Answers come from a local LLM (Ollama), cite their sources, and say which version each fact comes from. A compare view shows exactly what changed between two versions.
 
-**Live demo:** https://rranga.github.io/ai-version-aware-document-search/. It runs in demo mode, with sample documents and keyword search, until you connect a backend in **Settings**.
+**Live demo:** https://ranga-rekkamalla.github.io/ai-version-aware-document-search/. It runs in demo mode, with sample documents and keyword search, until you connect a backend in **Settings**.
 
 *Formerly **Aavanam Thedal** (Tamil for "document search"). Version 2 replaces the original Streamlit app; see [What changed from v1](#what-changed-from-v1).*
 
@@ -188,7 +188,7 @@ Plan for about 1.5 GB of disk space for Python packages (PyTorch is the largest)
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/rranga/ai-version-aware-document-search.git
+git clone https://github.com/ranga-rekkamalla/ai-version-aware-document-search.git
 cd ai-version-aware-document-search
 ```
 
@@ -319,7 +319,7 @@ All settings are environment variables with the `AT_` prefix. You can also put t
 | Variable | Default | Description |
 |---|---|---|
 | `AT_DATA_DIR` | `data` | Folder for the SQLite database and FAISS index (`/data` in Docker) |
-| `AT_CORS_ORIGINS` | `["http://localhost:5173", "http://127.0.0.1:5173", "https://rranga.github.io"]` | JSON list of sites allowed to call the API. Add your own Pages domain if you fork |
+| `AT_CORS_ORIGINS` | `["http://localhost:5173", "http://127.0.0.1:5173", "https://ranga-rekkamalla.github.io"]` | JSON list of sites allowed to call the API. Add your own Pages domain if you fork |
 | `AT_MAX_UPLOAD_MB` | `25` | Largest upload or downloaded link |
 | `AT_MAX_STORAGE_MB` | `1000` | Total size of all stored versions. `0` = no limit |
 | `AT_ALLOW_PRIVATE_URLS` | `false` | Allow links to private or loopback addresses (for example, intranet pages). Keep this off on public servers |

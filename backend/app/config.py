@@ -74,7 +74,7 @@ class Settings(BaseSettings):
     cors_origins: list[str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://rranga.github.io",
+        "https://ranga-rekkamalla.github.io",
     ]
 
     @property
